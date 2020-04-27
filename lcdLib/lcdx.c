@@ -71,5 +71,20 @@ main()
       drawPixel(c+20,r+20,COLOR_WHITE); // Rectangle
     }
   }
+
+  clearScreen(COLOR_BLACK);
   
+  // Class Program
+  //drawDiamondInSquare(u_char fc, u_char fr, u_char size, short color){
+  int colLeft, colRight;
+  for (r=0; r<=15; r+=3){
+      colLeft = 15- r;
+      colRight = 15;
+      for (c = colLeft; c <= colRight; c+=3){
+	drawPixel(20+c,30+r,COLOR_RED); // Base shape
+	drawPixel(20-c,30+r,COLOR_RED); // Mirror of column
+	drawPixel(20+c,30-r,COLOR_RED); // Mirror of row
+	drawPixel(20-c,30-r,COLOR_RED); // Mirror of column and row 
+      }
+  }  
 }
