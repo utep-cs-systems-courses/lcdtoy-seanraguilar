@@ -86,5 +86,19 @@ main()
 	drawPixel(20+c,30-r,COLOR_RED); // Mirror of row
 	drawPixel(20-c,30-r,COLOR_RED); // Mirror of column and row 
       }
-  }  
+  }
+  
+  clearScreen(COLOR_BLACK);
+ 
+  // From Lab Diamond but 2 Diamonds
+  for (r = 0; r <= 50; r++){
+    colLeft = 50 - r;
+    colRight = r;
+   for (c = colRight; c<= colLeft; c++) {
+      drawPixel(50+c, 50+r, COLOR_RED);
+      drawPixel(50+c, 50-r, COLOR_BLUE);
+      drawPixel(50-c, 50+r, COLOR_GREEN);
+      drawPixel(50-c, 50-r, COLOR_YELLOW);
+    }
+  }
 }
