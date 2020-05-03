@@ -4,7 +4,9 @@
 #include "buzzer.h"
 #include "libTimer.h"
 #include "stateMachine.h"
-//#include "toggle.h"
+#include "lcddraw.h"
+#include "lcdutils.h"
+
 
 char switch_state_down, switch_state_changed, v1, v2, v3, v4;
 
@@ -23,9 +25,9 @@ void switch_init()/* setup switch */
   P2IE = SWITCHES;/* enable interrupts from switches */
   P2OUT |= SWITCHES;/* pull-ups for switches */
   P2DIR &= ~SWITCHES;/* set switches' bits for input */
-  switch_update_interrupt_sense();
-  switch_interrupt_handler();
-  led_update();
+  //switch_update_interrupt_sense();
+  //switch_interrupt_handler();
+  //led_update();
 }
 
 void switch_interrupt_handler()
@@ -39,19 +41,28 @@ void switch_interrupt_handler()
 
   if (v1){
     switch_state_down = v1;
-    switch_state_changed = 1;
-    led_update();
+    clearScreen(COLOR_BLACK);
+    drawString5x7(20,50, "Sean's Project", COLOR_YELLOW, COLOR_BLACK);
+    drawString5x7(20,60, "Is On Fire!", COLOR_ORANGE, COLOR_BLACK);
     siren();
+    state_advance();
+    switch_state_changed = 1;
   }
   else if (v2) {
     switch_state_down = v2;
+    clearScreen(COLOR_BLACK);
+    awesomeShape();
     switch_state_changed = 2;
-    imperialMarch();
+    
+    //imperialMarch();
   }
   else if (v3) {
     switch_state_down = v3;
+    clearScreen(COLOR_BLACK);
+    classicCoolShape();
     switch_state_changed = 3;
-    marioThemeSong();
+    state_advance();
+    //marioThemeSong();
     //toggle();
   }
   else if (v4) {
