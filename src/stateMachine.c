@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "stateMachine.h"
 #include "led.h"
-#include "toggle.h"
+//#include "toggle.h"
 #include "switches.h"
 
 char toggle_red()/* always toggle! */
@@ -32,7 +32,7 @@ char toggle_green()/* only toggle green if red is on!  */
   return changed;
 }
 
-
+/*
 void state_advance() // alternate between toggling red & green 
 {
   char changed = 0;
@@ -45,7 +45,33 @@ void state_advance() // alternate between toggling red & green
   led_changed = changed;
   led_update();
 }
+*/
 
+void state_advance() // Alternate between toggling red & green
+{
+  switch(switch_state_changed){
+
+  case 1:
+    toggle_red();
+    break;
+
+  case 2:
+    toggle_green();
+    break;
+
+  case 3:
+    toggle_red();
+    toggle_green();
+    break;
+
+  case 4:
+    toggle_red();
+    toggle_green();
+    dim();
+    break;
+    //default:
+  }
+}
 
 // Method to assign the state of the LEDS
 void led_state(unsigned char g, unsigned char r) {
@@ -55,7 +81,6 @@ void led_state(unsigned char g, unsigned char r) {
   led_update();
 }
 
-/*
 
 // Method to reset current state of LEDS
 void reset_state() {
@@ -79,7 +104,7 @@ void dim() {
     for (i = 1; i < 1200; i++) {
       led_state(1,0);
       delay(i);
-      led_state(0,1;
+      led_state(0,1);
       delay(1200-i);
     }
     for (i = 1200; i > 1; i--) {
@@ -90,4 +115,4 @@ void dim() {
     }
   }
 }
-*/
+
