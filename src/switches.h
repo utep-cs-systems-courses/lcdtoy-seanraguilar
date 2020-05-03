@@ -1,6 +1,11 @@
 #ifndef switches_included
 #define switches_included
 
+
+typedef unsigned char u_char;
+typedef unsigned int u_int;
+
+
 #define SW1 BIT0                    //switch one is S1
 #define SW2 BIT1                    //switch two is S2
 #define SW3 BIT2                    //switch three is S3

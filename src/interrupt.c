@@ -1,19 +1,11 @@
- #include <msp430.h>
+#include <msp430.h>
 #include "switches.h"
 #include "buzzer.h"
 
-void __interrupt_vec(WDT_VECTOR) WDT(){
-  static char decisecond_count = 0;
-  if(++decisecond_count == tempo){
-    int repeat = 1;
-    while(repeat <= 5){
-      int cnt = 0;
-      while(cnt < 30000){
-	cnt++;
-      }
-      repeat++;
-    }
-    switch_interrupt_handler();
-    decisecond_count = 0;
+/* Switch on P2 (S1) */
+void __interrupt_vec(PORT2_VECTOR) Port_2(){
+  if (P2IFG & SWITCHES) {      /* did a button cause this interrupt? */
+    P2IFG &= ~SWITCHES;      /* clear pending sw interrupts */
+    switch_interrupt_handler();  /* single handler for all switches */
   }
 }

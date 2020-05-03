@@ -17,6 +17,54 @@ void drawPixel(u_char col, u_char row, u_int colorBGR)
   lcd_writeColor(colorBGR);
 }
 
+
+void classicCoolShape(){
+  for (int r = 0; r <= 50; r++){
+    int colLeft = 50 - r;
+    int colRight = r;
+    for (int c = colRight; c<= colLeft; c++) {
+      drawPixel(50+c, 50+r, COLOR_RED);
+      drawPixel(50+c, 50-r, COLOR_BLUE);
+      drawPixel(50-c, 50+r, COLOR_GREEN);
+      drawPixel(50-c, 50-r, COLOR_YELLOW);
+    }
+  }
+}
+
+void awesomeShape(){
+  int j;
+  for (j = 10; j < 25; j++)
+    drawPixel(j, j, COLOR_WHITE);
+  for (j = 10; j < 25; j++)
+    drawPixel(j, 25, COLOR_WHITE);
+  for (j = 10; j < 25; j++)
+    drawPixel(10, j, COLOR_WHITE);
+
+
+  for (j = 25; j < 40; j++) // Slope
+    drawPixel(j, j, COLOR_WHITE);
+  for (j = 25; j < 40; j++) // Horizontal
+    drawPixel(j, 40, COLOR_WHITE);
+  for (j = 25; j < 40; j++) // Vertical
+    drawPixel(25, j, COLOR_WHITE);
+
+  for (j = 25; j < 40; j++) // Slope
+    drawPixel(j-15, j, COLOR_WHITE);
+  for (j = 25; j < 40; j++) // Vertical
+    drawPixel(10, j, COLOR_WHITE);
+  for (j = 10; j < 25; j++) // Horizontal
+    drawPixel(j, 40, COLOR_WHITE);
+}
+
+
+
+
+
+
+
+
+
+
 /** Fill rectangle
  *
  *  \param colMin Column start
