@@ -4,6 +4,11 @@
 #include "led.h"
 //#include "toggle.h"
 #include "switches.h"
+#include "lcddraw.h"
+#include "lcdutils.h"
+
+
+char state = 3, switch_state_change, cool_enable = 0, toggle_animation = 1;
 
 char toggle_red()/* always toggle! */
 {
@@ -49,25 +54,55 @@ void state_advance() // alternate between toggling red & green
 
 void state_advance() // Alternate between toggling red & green
 {
-  switch(switch_state_changed){
+  switch(state){
 
-  case 1:
+  case 0:
+    if(switch_state_changed)
+    {
+      buzzer_set_period(0);
+      clearScreen(COLOR_BLACK);
+      drawString5x7(20,50, "Sean's Project", COLOR_YELLOW, COLOR_BLACK);
+      drawString5x7(20,60, "Is On Fire!", COLOR_ORANGE, COLOR_BLACK);
+      siren();
+      switch_state_changed = 0;
+    }
     toggle_red();
     break;
 
+  case 1:
+    if(switch_state_changed)
+    {
+	buzzer_set_period(0);
+	clearScreen(COLOR_BLACK);
+	awesomeShape();
+	switch_state_changed = 0;
+    }
+    toggle_green();
+    break;
+
   case 2:
+    if(switch_state_changed)
+      {
+	buzzer_set_period(0);
+	clearScreen(COLOR_BLACK);
+	classicCoolShape();
+	switch_state_changed = 0;
+      }
+    toggle_red();
     toggle_green();
     break;
 
   case 3:
+    if(switch_state_changed)
+      {
+	buzzer_set_period(0);
+	clearScreen(COLOR_BLACK);
+	originalShape();
+	switch_state_changed = 0;
+      }
     toggle_red();
     toggle_green();
-    break;
-
-  case 4:
-    toggle_red();
-    toggle_green();
-    dim();
+    //dim();
     break;
     //default:
   }

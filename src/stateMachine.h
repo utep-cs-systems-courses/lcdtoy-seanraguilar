@@ -1,6 +1,9 @@
 #ifndef stateMachine_included
 #define stateMachine_included
 
+extern char state, cool_enable;
+//extern int v1, v2, v3, v4;
+
 void state_advance();
 //void toggle();
 //void toggle_green();

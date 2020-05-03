@@ -22,43 +22,110 @@ void classicCoolShape(){
   for (int r = 0; r <= 50; r++){
     int colLeft = 50 - r;
     int colRight = r;
-    for (int c = colRight; c<= colLeft; c++) {
-      drawPixel(50+c, 50+r, COLOR_RED);
-      drawPixel(50+c, 50-r, COLOR_BLUE);
-      drawPixel(50-c, 50+r, COLOR_GREEN);
-      drawPixel(50-c, 50-r, COLOR_YELLOW);
+    for (int c = colRight; c<= colLeft; c+=2) {
+      drawPixel(40+c, 70+r, COLOR_RED);
+      drawPixel(40+c,70-r, COLOR_BLUE);
+      drawPixel(40-c, 70+r, COLOR_GREEN);
+      drawPixel(40-c, 70-r, COLOR_YELLOW);
+      drawPixel(60+c, 75+r, COLOR_RED);
+      drawPixel(60+c, 75-r, COLOR_BLUE);
+      drawPixel(60-c, 75+r, COLOR_GREEN);
+      drawPixel(60-c, 75-r, COLOR_YELLOW);
+      drawPixel(80+c, 80+r, COLOR_RED);
+      drawPixel(80+c, 80-r, COLOR_BLUE);
+      drawPixel(80-c, 80+r, COLOR_GREEN);
+      drawPixel(80-c, 80-r, COLOR_YELLOW);
     }
   }
 }
 
 void awesomeShape(){
+  for (int r = 0; r <= 50; r++){
+    int colLeft = 50 - r;
+    int colRight = r;
+    for (int c = colRight; c<= colLeft; c+=4) {
+      drawPixel(20+c, 20+r, COLOR_RED);
+      drawPixel(20+c, 20-r, COLOR_BLUE);
+      drawPixel(20-c, 20+r, COLOR_GREEN);
+      drawPixel(20-c, 20-r, COLOR_YELLOW);
+      drawPixel(20+c, 60+r, COLOR_RED);
+      drawPixel(20+c, 60-r, COLOR_BLUE);
+      drawPixel(20-c, 60+r, COLOR_GREEN);
+      drawPixel(20-c, 60-r, COLOR_YELLOW);
+      drawPixel(20+c, 100+r, COLOR_RED);
+      drawPixel(20+c, 100-r, COLOR_BLUE);
+      drawPixel(20-c, 100+r, COLOR_GREEN);
+      drawPixel(20-c, 100-r, COLOR_YELLOW);
+      drawPixel(20+c, 140+r, COLOR_RED);
+      drawPixel(20+c, 140-r, COLOR_BLUE);
+      drawPixel(20-c, 140+r, COLOR_GREEN);
+      drawPixel(20-c, 140-r, COLOR_YELLOW);
+
+      drawPixel(120+c, 20+r, COLOR_RED);
+      drawPixel(120+c, 20-r, COLOR_BLUE);
+      drawPixel(120-c, 20+r, COLOR_GREEN);
+      drawPixel(120-c, 20-r, COLOR_YELLOW);
+      drawPixel(120+c, 60+r, COLOR_RED);
+      drawPixel(120+c, 60-r, COLOR_BLUE);
+      drawPixel(120-c, 60+r, COLOR_GREEN);
+      drawPixel(120-c, 60-r, COLOR_YELLOW);
+      drawPixel(120+c, 100+r, COLOR_RED);
+      drawPixel(120+c, 100-r, COLOR_BLUE);
+      drawPixel(120-c, 100+r, COLOR_GREEN);
+      drawPixel(120-c, 100-r, COLOR_YELLOW);
+      drawPixel(120+c, 140+r, COLOR_RED);
+      drawPixel(120+c, 140-r, COLOR_BLUE);
+      drawPixel(120-c, 140+r, COLOR_GREEN);
+      drawPixel(120-c, 140-r, COLOR_YELLOW);
+      
+    }
+  }
+
+  /*
   int j;
-  for (j = 10; j < 25; j++)
-    drawPixel(j, j, COLOR_WHITE);
-  for (j = 10; j < 25; j++)
-    drawPixel(j, 25, COLOR_WHITE);
-  for (j = 10; j < 25; j++)
-    drawPixel(10, j, COLOR_WHITE);
-
+  for (j = 10; j < 50; j++)
+    drawPixel(j, j, COLOR_RED);
+  for (j = 10; j < 50; j++)
+    drawPixel(j, 50, COLOR_BLUE);
+  for (j = 10; j < 50; j++)
+    drawPixel(10, j, COLOR_YELLOW);
 
   for (j = 25; j < 40; j++) // Slope
-    drawPixel(j, j, COLOR_WHITE);
+    drawPixel(j, j, COLOR_RED);
   for (j = 25; j < 40; j++) // Horizontal
-    drawPixel(j, 40, COLOR_WHITE);
+    drawPixel(j, 40, COLOR_BLUE);
   for (j = 25; j < 40; j++) // Vertical
-    drawPixel(25, j, COLOR_WHITE);
+   drawPixel(25, j, COLOR_YELLOW);
 
-  for (j = 25; j < 40; j++) // Slope
-    drawPixel(j-15, j, COLOR_WHITE);
+   for (j = 25; j < 40; j++) // Slope
+    drawPixel(j-15, j, COLOR_RED);
   for (j = 25; j < 40; j++) // Vertical
-    drawPixel(10, j, COLOR_WHITE);
+    drawPixel(10, j, COLOR_BLUE);
   for (j = 10; j < 25; j++) // Horizontal
-    drawPixel(j, 40, COLOR_WHITE);
+    drawPixel(j, 40, COLOR_YELLOW);
+  */
+  
 }
 
-
-
-
+void originalShape(){
+  int c, r;  
+  for (c = 0; c <= 40; c+=1){
+    for (r = 0; r <= 40; r+=1){
+      drawPixel(c+25,r+25,COLOR_RED); 
+      drawPixel(c+30,r+30,COLOR_BLUE); 
+      drawPixel(c+35,r+35,COLOR_YELLOW);
+      drawPixel(c+40,r+40,COLOR_RED); 
+      drawPixel(c+45,r+45,COLOR_BLUE); 
+      drawPixel(c+50,r+50,COLOR_YELLOW);
+      drawPixel(c+55,r+55,COLOR_RED);
+      drawPixel(c+60,r+60,COLOR_BLUE); 
+      drawPixel(c+65,r+65,COLOR_YELLOW);
+      drawPixel(c+70,r+70,COLOR_RED);  
+      drawPixel(c+75,r+75,COLOR_BLUE); 
+      drawPixel(c+80,r+80,COLOR_YELLOW);
+    }
+  }
+}
 
 
 

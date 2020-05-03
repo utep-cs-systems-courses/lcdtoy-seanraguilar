@@ -13,7 +13,7 @@ int main() {
   switch_init();
   buzzer_init();
   led_init();
-  enableWDTInterrupts();
+  //enableWDTInterrupts();
 
 
   lcd_init();

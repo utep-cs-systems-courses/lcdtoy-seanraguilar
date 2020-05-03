@@ -8,7 +8,7 @@
 #include "lcdutils.h"
 
 
-char switch_state_down, switch_state_changed, v1, v2, v3, v4;
+char switch_state_down, switch_state_changed, state, cool_enable, v1, v2, v3, v4;
 
 static char switch_update_interrupt_sense()
 {
@@ -25,59 +25,27 @@ void switch_init()/* setup switch */
   P2IE = SWITCHES;/* enable interrupts from switches */
   P2OUT |= SWITCHES;/* pull-ups for switches */
   P2DIR &= ~SWITCHES;/* set switches' bits for input */
-  //switch_update_interrupt_sense();
+  switch_update_interrupt_sense();
   //switch_interrupt_handler();
   //led_update();
+}
+
+set_enables(char cool){
+  cool_enable = cool;
 }
 
 void switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
-
   v1 = (p2val & SW1) ? 0 : 1;
   v2 = (p2val & SW2) ? 0 : 1;
   v3 = (p2val & SW3) ? 0 : 1;
   v4 = (p2val & SW4) ? 0 : 1;
-
-  if (v1){
-    switch_state_down = v1;
-    clearScreen(COLOR_BLACK);
-    drawString5x7(20,50, "Sean's Project", COLOR_YELLOW, COLOR_BLACK);
-    drawString5x7(20,60, "Is On Fire!", COLOR_ORANGE, COLOR_BLACK);
-    siren();
-    state_advance();
-    switch_state_changed = 1;
-  }
-  else if (v2) {
-    switch_state_down = v2;
-    clearScreen(COLOR_BLACK);
-    awesomeShape();
-    switch_state_changed = 2;
-    
-    //imperialMarch();
-  }
-  else if (v3) {
-    switch_state_down = v3;
-    clearScreen(COLOR_BLACK);
-    classicCoolShape();
-    switch_state_changed = 3;
-    state_advance();
-    //marioThemeSong();
-    //toggle();
-  }
-  else if (v4) {
-    switch_state_down = v4;
-    switch_state_changed = 4;
-    buzzer_set_period(0);
-    //toggle();
-  }
-  else {
-    switch_state_down = 0;
-    switch_state_changed = 1;
-    buzzer_set_period(0);
-    led_update();
-    dim_on = 0;
-  }
   switch_state_changed = 1;
-  led_update();
+  
+  if (v1){ state = 0; set_enables(0); state_advance(); }
+  if (v2){ state = 1; set_enables(0); state_advance();}
+  if (v3){ state = 2; set_enables(1); state_advance();}
+  if (v4){ state = 3; set_enables(0); state_advance();}
+  if (!v1 && cool_enable){ state = 1; }
 }
