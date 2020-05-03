@@ -9,16 +9,15 @@ AS              = msp430-elf-as	-mcpu=msp430 --traditional-format -mP
 
 
 
-all: project3.elf libLcd.a
-
+all: project2.elf libLcd.a
 
 libLcd.a: font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
 	$(AR) crs $@ $^
 
 
 lcddraw.o: lcddraw.c lcddraw.h lcdutils.h
-
 lcdutils.o: lcdutils.c lcdutils.h
+
 
 install: libLcd.a
 	mkdir -p ../h ../lib
@@ -26,13 +25,12 @@ install: libLcd.a
 	cp *.h ../h
 
 #additional rules for files
-project3.elf: ${COMMON_OBJECTS} stateMachine.o buzzer.o interrupts.o led.o switches.o main.o libLcd.a ../lib/libTimer.a
+project2.elf: ${COMMON_OBJECTS} stateMachine.o buzzer.o interrupt.o led.o switches.o main.o libLcd.a ../lib/libTimer.a
 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 
-load: project3.elf
-
+load: project2.elf
 	msp430loader.sh project3.elf
 
 clean:
@@ -48,4 +46,4 @@ stateMachine.o: stateMachine.s stateMachine.h led.h switches.h
 
 main.o: main.c buzzer.h led.h switches.h
 
-interrupts.o: interrupts.c 
+interrupt.o: interrupt.c 
